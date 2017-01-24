@@ -185,6 +185,17 @@ RUN if [ ${CODEIGNITER} = true ]; then \
      docker-php-ext-install tokenizer \
 ;fi
 
+
+#####################################
+# Swoole:
+#####################################
+ARG INSTALL_SWOOLE=false
+RUN if [ ${INSTALL_SWOOLE} = true ]; then \
+    # Install Swoole PHP extentions requirements
+     pecl install swoole
+     docker-php-ext-enable swoole \
+;fi
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
@@ -193,6 +204,9 @@ RUN if [ ${CODEIGNITER} = true ]; then \
 
 ADD ./laravel.ini /usr/local/etc/php/conf.d
 ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/
+
+# Define localtime
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 RUN rm -r /var/lib/apt/lists/*
 
