@@ -37,6 +37,8 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 #   - ...
 #
 
+COPY ./sources.list /etc/apt/sources.list
+
 #####################################
 # Non-Root User:
 #####################################

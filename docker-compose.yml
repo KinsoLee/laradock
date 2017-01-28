@@ -16,17 +16,17 @@ services:
         build:
             context: ./workspace
             args:
-                - INSTALL_XDEBUG=false
-                - INSTALL_MONGO=false
-                - INSTALL_NODE=false
-                - INSTALL_YARN=false
+                - INSTALL_XDEBUG=true
+                - INSTALL_MONGO=true
+                - INSTALL_NODE=true
+                - INSTALL_YARN=true
                 - INSTALL_DRUSH=false
                 - INSTALL_AEROSPIKE_EXTENSION=false
                 - INSTALL_V8JS_EXTENSION=false
-                - COMPOSER_GLOBAL_INSTALL=false
+                - COMPOSER_GLOBAL_INSTALL=true
                 - INSTALL_WORKSPACE_SSH=false
                 - INSTALL_LARAVEL_ENVOY=false
-                - INSTALL_LINUXBREW=false
+                - INSTALL_LINUXBREW=true
                 - PUID=1000
                 - PGID=1000
                 - NODE_VERSION=stable
@@ -47,14 +47,14 @@ services:
         build:
             context: ./php-fpm
             args:
-                - INSTALL_XDEBUG=false
-                - INSTALL_SOAP=false
-                - INSTALL_MONGO=false
+                - INSTALL_XDEBUG=true
+                - INSTALL_SOAP=true
+                - INSTALL_MONGO=true
                 - INSTALL_ZIP_ARCHIVE=false
-                - INSTALL_BCMATH=false
-                - INSTALL_MEMCACHED=false
-                - INSTALL_OPCACHE=false
-                - INSTALL_EXIF=false
+                - INSTALL_BCMATH=true
+                - INSTALL_MEMCACHED=true
+                - INSTALL_OPCACHE=true
+                - INSTALL_EXIF=true
                 - INSTALL_AEROSPIKE_EXTENSION=false
                 - CODEIGNITER=false
             dockerfile: Dockerfile-70
@@ -73,21 +73,21 @@ services:
 
 ### Nginx Server Container ##################################
 
-    nginx:
-        build:
-            context: ./nginx
-            args:
-                - PHP_UPSTREAM=php-fpm
-        volumes_from:
-            - applications
-        volumes:
-            - ./logs/nginx/:/var/log/nginx
-            - ./nginx/sites/:/etc/nginx/sites-available
-        ports:
-            - "80:80"
-            - "443:443"
-        links:
-            - php-fpm
+    # nginx:
+    #     build:
+    #         context: ./nginx
+    #         args:
+    #             - PHP_UPSTREAM=php-fpm
+    #     volumes_from:
+    #         - applications
+    #     volumes:
+    #         - ./logs/nginx/:/var/log/nginx
+    #         - ./nginx/sites/:/etc/nginx/sites-available
+    #     ports:
+    #         - "80:80"
+    #         - "443:443"
+    #     links:
+    #         - php-fpm
 
 
 
