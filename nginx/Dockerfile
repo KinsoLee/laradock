@@ -4,6 +4,8 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 
 ADD nginx.conf /etc/nginx/
 
+RUN rm /etc/apk/repositories && echo 'https://mirrors.ustc.edu.cn/alpine/latest-stable/main/' >> /etc/apk/repositories
+
 ARG PHP_UPSTREAM=php-fpm
 
 RUN apk update \
