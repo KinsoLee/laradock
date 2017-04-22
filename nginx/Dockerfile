@@ -4,9 +4,10 @@ MAINTAINER Mahmoud Zalt <mahmoud@zalt.me>
 
 ADD nginx.conf /etc/nginx/
 
-RUN rm /etc/apk/repositories && echo 'https://mirrors.ustc.edu.cn/alpine/latest-stable/main/' >> /etc/apk/repositories
-
 ARG PHP_UPSTREAM=php-fpm
+
+# fix a problem--#397, change application source from dl-cdn.alpinelinux.org to aliyun source.
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
 
 RUN apk update \
     && apk upgrade \
